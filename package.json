@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "tech test",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "webpack"
+    "dev": "webpack --watch",
+    "build": "webpack -p"
   },
   "keywords": [],
   "author": "anton zlydenko",

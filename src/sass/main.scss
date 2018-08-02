@@ -5,6 +5,18 @@
   animation: 0.8s on-error linear forwards;
 }
 
+.username-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+
+  & label,
+  & input:not(:last-child) {
+    margin-right: 1em;
+  }
+}
+
 .avatar {
   width: 10em;
   height: 10em;
@@ -13,7 +25,7 @@
   margin-right: 3em;
 }
 
-.user {
+.userinfo {
   margin-top: 3em;
   display: flex;
   align-items: center;
@@ -39,25 +51,96 @@
   }
 }
 
-#repolist li {
-  user-select: none;
-  cursor: pointer;
-  list-style: none;
-  padding: 0.2em 1em;
+.reposlist p:not(.repo-description) {
+  margin: 0.4em 0em;
 }
 
-#repolist li:hover,
-#repolist li:active {
-  background-color: darken(#fff, 50%);
+.repo-description {
+  margin: 2em 0em;
 }
 
-#repolist li:not(:last-child) {
-  border-bottom: 0.1em solid;
+.reposlist li {
+  & header {
+    user-select: none;
+    cursor: pointer;
+    padding: 1em 2em;
+    border-bottom: 0.1em solid;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover,
+    &:active {
+      background-color: darken(#fff, 50%);
+    }
+
+    & h3 {
+      margin: 0em;
+    }
+  }
+
+  & main {
+    padding: 0em 2em 2em 2em;
+    border-bottom: 0.1em solid;
+
+    & a {
+      text-decoration: none;
+      color: $link;
+      margin-top: 0.4em;
+      margin-bottom: 0.4em;
+
+      &:active,
+      &:hover {
+        color: lighten($link, 20%);
+      }
+
+      &:last-child {
+        color: black;
+        display: block;
+        border: 0.1em solid;
+        border-radius: 0.5em;
+        padding: 0.5em 1em;
+        width: 25%;
+        text-align: center;
+        margin: 0em auto;
+
+        &:hover,
+        &:active {
+          background-color: darken(#fff, 50%);
+        }
+      }
+    }
+  }
 }
 
-#repolist ul {
+.repo-clone {
+  display: flex;
+  align-items: center;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+
+  & label {
+    margin-right: 1em;
+  }
+}
+
+.reposlist ul {
   padding: 0em;
   border: 0.1em solid;
+  list-style: none;
+}
+
+.counter {
+  margin-right: 1em;
+}
+
+.invisible {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+  position: absolute;
+  left: -999999px;
 }
 
 @keyframes on-error {
