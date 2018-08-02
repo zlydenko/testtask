@@ -60,4 +60,10 @@ function formatDate(timestamp) {
   return result;
 }
 
+export function cleanSection(node) {
+  while (node.firstChild) {
+    node.removeChild(node.firstChild);
+  }
+}
+
 export default render;

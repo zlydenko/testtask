@@ -1,4 +1,4 @@
-import render from "./userInfo.js";
+import render, { cleanSection } from "./userInfo.js";
 
 const usernameResult = document.querySelector("#username_result");
 const input = document.querySelector("input");
@@ -6,6 +6,7 @@ const form = document.querySelector("form");
 
 form.addEventListener("submit", e => {
   e.preventDefault();
+  cleanSection(usernameResult);
   if (input.value.length === 0) {
     onError(input);
   } else {
