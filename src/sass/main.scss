@@ -1,9 +1,42 @@
-$error_bg: #ffd2d2;
-$error_color: #d8000c;
+@import "./colors";
 
 .error {
   border-color: rgb(0, 0, 0);
   animation: 0.8s on-error linear forwards;
+}
+
+.avatar {
+  width: 10em;
+  height: 10em;
+  border: 0.1em solid;
+  border-radius: 1em;
+  margin-right: 3em;
+}
+
+.user {
+  margin-top: 3em;
+  display: flex;
+  align-items: center;
+}
+
+.userbio {
+  & h2 {
+    margin-top: 0em;
+  }
+
+  & p {
+    margin: 0.3em 0em;
+  }
+
+  & a {
+    color: $link;
+    text-decoration: none;
+
+    &:active,
+    &:hover {
+      color: lighten($link, 20%);
+    }
+  }
 }
 
 @keyframes on-error {

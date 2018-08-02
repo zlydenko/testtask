@@ -1,5 +1,6 @@
 function render(data, node) {
   const mainNode = document.createElement("section");
+  const info = document.createElement("div");
   const avatar = document.createElement("img");
   const username = document.createElement("h2");
   const emailText = document.createElement("p");
@@ -17,19 +18,24 @@ function render(data, node) {
   } = data;
 
   avatar.src = avatar_url;
+  avatar.classList.add("avatar");
   username.textContent = name || login;
-  emailText.textContent = email || "X";
-  companyText.textContent = company || "X";
+  emailText.textContent = email ? `email: ${email}` : null;
+  companyText.textContent = company ? `company name: ${company}` : null;
   registeredText.textContent = formatDate(created_at);
-  followersCounter.textContent = followers;
+  followersCounter.textContent = `followers: ${followers}`;
   followersCounter.href = `https://github.com/${login}?tab=followers`;
 
+  info.classList.add("userbio");
+  info.appendChild(username);
+  emailText.textContent.length < 1 ? info.appendChild(emailText) : null;
+  companyText.textContent.length < 1 ? info.appendChild(companyText) : null;
+  info.appendChild(registeredText);
+  info.appendChild(followersCounter);
+
+  mainNode.classList.add("user");
   mainNode.appendChild(avatar);
-  mainNode.appendChild(username);
-  mainNode.appendChild(emailText);
-  mainNode.appendChild(companyText);
-  mainNode.appendChild(registeredText);
-  mainNode.appendChild(followersCounter);
+  mainNode.appendChild(info);
 
   return node.appendChild(mainNode);
 }

@@ -15,7 +15,6 @@ form.addEventListener("submit", e => {
       .catch(err => {
         onError(input);
         console.log(err.message);
-        console.log("user is not found");
       });
   }
 });
