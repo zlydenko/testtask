@@ -39,6 +39,27 @@
   }
 }
 
+#repolist li {
+  user-select: none;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.2em 1em;
+}
+
+#repolist li:hover,
+#repolist li:active {
+  background-color: darken(#fff, 50%);
+}
+
+#repolist li:not(:last-child) {
+  border-bottom: 0.1em solid;
+}
+
+#repolist ul {
+  padding: 0em;
+  border: 0.1em solid;
+}
+
 @keyframes on-error {
   0% {
     border-color: rgb(0, 0, 0);

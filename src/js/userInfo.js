@@ -1,4 +1,4 @@
-function render(data, node) {
+function renderUserInfo(data, node) {
   const mainNode = document.createElement("section");
   const info = document.createElement("div");
   const avatar = document.createElement("img");
@@ -28,8 +28,8 @@ function render(data, node) {
 
   info.classList.add("userbio");
   info.appendChild(username);
-  emailText.textContent.length < 1 ? info.appendChild(emailText) : null;
-  companyText.textContent.length < 1 ? info.appendChild(companyText) : null;
+  emailText.textContent.length > 1 ? info.appendChild(emailText) : null;
+  companyText.textContent.length > 1 ? info.appendChild(companyText) : null;
   info.appendChild(registeredText);
   info.appendChild(followersCounter);
 
@@ -72,4 +72,4 @@ export function cleanSection(node) {
   }
 }
 
-export default render;
+export default renderUserInfo;

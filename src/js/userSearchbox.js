@@ -1,21 +1,27 @@
-import render, { cleanSection } from "./userInfo.js";
+import renderUserInfo, { cleanSection } from "./userInfo.js";
+import renderRepoList, { fetchUserRepos } from "./repoList.js";
 
 const usernameResult = document.querySelector("#username_result");
+const repoListElement = document.querySelector("#repolist");
 const input = document.querySelector("input");
 const form = document.querySelector("form");
 
 form.addEventListener("submit", e => {
   e.preventDefault();
   cleanSection(usernameResult);
+  cleanSection(repoListElement);
   if (input.value.length === 0) {
     onError(input);
   } else {
     fetchUserInfo(input.value)
-      .then(data => render(data, usernameResult))
+      .then(data => renderUserInfo(data, usernameResult))
       .catch(err => {
         onError(input);
         console.log(err.message);
       });
+    fetchUserRepos(`https://api.github.com/users/${input.value}/repos`)
+      .then(data => renderRepoList(data, repoListElement))
+      .catch(err => console.log(err));
   }
 });
 
