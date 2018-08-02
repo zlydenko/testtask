@@ -1,3 +1,6 @@
+import render from "./userInfo.js";
+
+const usernameResult = document.querySelector("#username_result");
 const input = document.querySelector("input");
 const form = document.querySelector("form");
 
@@ -7,9 +10,10 @@ form.addEventListener("submit", e => {
     onError(input);
   } else {
     fetchUserInfo(input.value)
-      .then(data => console.log(data))
+      .then(data => render(data, usernameResult))
       .catch(err => {
         onError(input);
+        console.log(err.message);
         console.log("user is not found");
       });
   }
