@@ -1,0 +1,16 @@
+@keyframes on-error {
+  0% {
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+
+  50% {
+    border-color: $error_color;
+    background-color: $error_bg;
+  }
+
+  100% {
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+}
