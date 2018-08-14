@@ -1,8 +1,9 @@
 class GithubInfo {
-  constructor(username, userInfoElem, reposListElem) {
+  constructor(username, userInfoElem, reposListElem, inputField) {
     this.username = username;
     this.userNode = userInfoElem;
     this.reposNode = reposListElem;
+    this.inputField = inputField;
     this.userAPI = `https://api.github.com/users/${this.username}`;
     this.reposAPI = `https://api.github.com/users/${this.username}/repos`;
   }
@@ -26,13 +27,27 @@ class GithubInfo {
     return this.fetchData(this.reposAPI);
   }
 
+  renderError() {
+    let mainElem = document.createElement("div");
+    let text = document.createElement("h2");
+    let subtext = document.createElement("p");
+    text.textContent = "Sorry, user is not found";
+    subtext.textContent = "try another one";
+
+    mainElem.appendChild(text);
+    mainElem.appendChild(subtext);
+
+    return mainElem;
+  }
+
   init() {
     this.cleanSection(this.userNode);
     this.cleanSection(this.reposNode);
 
     this.fetchUserInfo().then(data => {
       if (data.message === "Not Found") {
-        this.onError(input);
+        this.onError(this.inputField);
+        this.reposNode.appendChild(this.renderError());
         return;
       }
       const { avatar, info } = this.userInfoElem(data);
@@ -42,7 +57,7 @@ class GithubInfo {
 
     this.fetchReposInfo().then(data => {
       if (data.message === "Not Found") {
-        this.onError(input);
+        this.onError(this.inputField);
         return;
       }
 
