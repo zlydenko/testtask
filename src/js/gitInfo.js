@@ -43,27 +43,43 @@ class GithubInfo {
   init() {
     this.cleanSection(this.userNode);
     this.cleanSection(this.reposNode);
+    const cachedData = this.getFromLocalStorage(this.username);
+    const cachedRepos = this.getFromLocalStorage(`${this.username}-repos`);
 
-    this.fetchUserInfo().then(data => {
-      if (data.message === "Not Found") {
-        this.onError(this.inputField);
-        this.reposNode.appendChild(this.renderError());
-        return;
-      }
-      const { avatar, info } = this.userInfoElem(data);
+    if (cachedData === null) {
+      this.fetchUserInfo().then(data => {
+        if (data.message === "Not Found") {
+          this.onError(this.inputField);
+          this.reposNode.appendChild(this.renderError());
+          return;
+        }
+
+        this.saveToLocalStorage(this.username, data);
+        const { avatar, info } = this.userInfoElem(data);
+        this.userNode.appendChild(avatar);
+        this.userNode.appendChild(info);
+      });
+    } else {
+      const { avatar, info } = this.userInfoElem(cachedData);
       this.userNode.appendChild(avatar);
       this.userNode.appendChild(info);
-    });
+    }
 
-    this.fetchReposInfo().then(data => {
-      if (data.message === "Not Found") {
-        this.onError(this.inputField);
-        return;
-      }
+    if (cachedRepos === null) {
+      this.fetchReposInfo().then(data => {
+        if (data.message === "Not Found") {
+          this.onError(this.inputField);
+          return;
+        }
 
-      const reposList = this.reposInfoElem(data);
+        this.saveToLocalStorage(`${this.username}-repos`, data);
+        const reposList = this.reposInfoElem(cachedRepos);
+        this.reposNode.appendChild(reposList);
+      });
+    } else {
+      const reposList = this.reposInfoElem(cachedRepos);
       this.reposNode.appendChild(reposList);
-    });
+    }
   }
 
   userInfoElem(data) {
@@ -226,6 +242,15 @@ class GithubInfo {
     while (node.firstChild) {
       node.removeChild(node.firstChild);
     }
+  }
+
+  saveToLocalStorage(key, data) {
+    const prettiedData = JSON.stringify(data);
+    localStorage.setItem(key, prettiedData);
+  }
+
+  getFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
   }
 }
 
