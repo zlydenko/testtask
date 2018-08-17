@@ -12,6 +12,6 @@ form.addEventListener("submit", e => {
 
   e.preventDefault();
 
-  let user = new GithubInfo(userName, userinfo, reposlist);
+  let user = new GithubInfo(userName, userinfo, reposlist, input);
   user.init();
 });
