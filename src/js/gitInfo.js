@@ -74,7 +74,7 @@ class GithubInfo {
         }
 
         this.saveToLocalStorage(`${this.username}-repos`, data);
-        const reposList = this.reposInfoElem(cachedRepos);
+        const reposList = this.reposInfoElem(data);
         this.reposNode.appendChild(reposList);
       });
     } else {
