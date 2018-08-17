@@ -1,5 +1,4 @@
 .reposlist li
-
   & header 
     user-select: none
     cursor: pointer
@@ -12,11 +11,7 @@
 
     &:hover,
     &:active 
-      background-color: darken($btn_bg, 50%)
-      color: #fff
-
-    &:hover svg, &:active svg
-      fill: #fff
+      background-color: darken(#fff, 50%)
     
 
     & h3 
@@ -30,15 +25,34 @@
 
     & a 
       text-decoration: none
-      color: black    
+      color: $link
+      margin-top: 0.4em
+      margin-bottom: 0.4em
 
-      &:not(.repo-link):hover, &:not(.repo-link):active
-        background-color: lighten($btn_bg, 15%)
+      &:active,
+      &:hover 
+        color: lighten($link, 20%)
       
+
+      &:last-child 
+        color: black
+        display: block
+        border: 0.1em solid
+        border-radius: 0.5em
+        padding: 0.5em 1em
+        width: 25%
+        text-align: center
+        margin: 0em auto
+
+        &:hover,
+        &:active 
+          background-color: darken(#fff, 50%)
 
 .repo-clone 
   display: flex
   align-items: center
+  margin-top: 0.4em
+  margin-bottom: 0.4em
 
   & label 
     margin-right: 1em
@@ -50,8 +64,6 @@
 
 
 .repo-description 
-  border-top: 2px solid
-  padding-top: 20px
   margin: 2em 0em
 
 
@@ -59,6 +71,11 @@
   padding: 0em
   border: 0.1em solid
   list-style: none
+
+
+.counter 
+  margin-right: 1em
+
 
 .invisible 
   visibility: hidden
