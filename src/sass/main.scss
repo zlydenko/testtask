@@ -1,7 +1,97 @@
+@import "./typography";
 @import "./colors";
 @import "./userinfo";
 @import "./reposlist";
 @import "./animations";
+
+body {
+  background: #0f2027;
+  background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  font-family: $mainFont;
+}
+
+#username_field {
+  height: 3em;
+  border: none;
+  background-color: inherit;
+  border-bottom: 0.2em solid #fff;
+  background-image: url("~/coding/projects/transloyd-test/src/img/loupe.svg");
+  background-position: left center;
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  text-indent: 40px;
+  font-family: monospace;
+  font-size: 1.5em;
+  line-height: 1.1em;
+  color: #fff;
+}
+
+.result-wrapper {
+  display: none;
+  background-color: #fff;
+  padding: 1em;
+  padding-top: 2em;
+  border-radius: 10px;
+  box-shadow: 0.1em 0.1em 10px #fff;
+  animation: appear 0.6s linear forwards;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.btns-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid;
+}
+
+.btn:not(.repo-clone) {
+  align-items: center;
+  display: inline-flex;
+  color: #fff;
+
+  & svg {
+    fill: #fff;
+  }
+}
+
+.btn {
+  background-color: $btn_bg;
+  border: 2px solid $btn_border;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+  padding: 5px 10px;
+  color: #fff;
+}
+
+.btn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.symbols {
+  margin-right: 6px;
+}
+
+.repo-link {
+  margin-left: 6px;
+  margin-top: 2px;
+}
+
+.repo-link:hover svg,
+.repo-link:active svg {
+  fill: lighten(black, 60%);
+}
 
 .container {
   width: 75%;
